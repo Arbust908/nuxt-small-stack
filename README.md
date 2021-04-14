@@ -1,20 +1,29 @@
-# full-nuxt-app
+# Nuxt Small Stack
 
 ## Build Setup
 
 ```bash
-# install dependencies
-$ npm install
+# Instalar Dependencias
+npm install
+# Crear tu propio ENV
+mv .env.example .env
+# Levantar el server en el puerto indicado
+npm run dev
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# Construrir para Produccion
+npm run build
+npm run start
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+# Generar el app estatico
+npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### Referencia de Tailwind
+
+```bash
+# => http://localhost:PORT/_tailwind/
+```
+
+## Referencias
+
+[Nuxt.js](https://nuxtjs.org).

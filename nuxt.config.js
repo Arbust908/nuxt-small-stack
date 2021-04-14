@@ -1,24 +1,32 @@
 export default {
   server: {
-    port: 3000,
+    port: process.env.PORT,
     host: '0.0.0.0',
   },
 
   head: {
-    title: 'full-nuxt-app',
+    title: process.env.APP_NAME || 'Nuxt Small Stack',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          process.env.DESCRIPTION ||
+          'A self-contained Nuxt front-end with a serverMiddleware API with JSON-based DB',
+      },
       {
         hid: `og:title`,
         property: 'og:title',
-        content: `Quiero Invitar`,
+        content: process.env.APP_NAME || 'Nuxt Small Stack',
       },
       {
         hid: `og:description`,
         property: 'og:description',
-        content: `Estas invitado! | Quiero Invitar`,
+        content:
+          process.env.DESCRIPTION ||
+          'A self-contained Nuxt front-end with a serverMiddleware API with JSON-based DB',
       },
       // {
       //     hid: `og:image`,
@@ -28,7 +36,7 @@ export default {
       {
         hid: `og:site_name`,
         property: 'og:site_name',
-        content: `Quiero Invitar`,
+        content: process.env.APP_NAME || 'Nuxt Small Stack',
       },
       // {
       //     hid: `og:url`,
@@ -38,17 +46,19 @@ export default {
       {
         hid: 'twitter:title',
         property: 'twitter:title',
-        content: `Quiero Invitar`,
+        content: process.env.APP_NAME || 'Nuxt Small Stack',
       },
       {
         hid: 'twitter:description',
         property: 'twitter:description',
-        content: `Estas invitado! | Quiero Invitar`,
+        content:
+          process.env.DESCRIPTION ||
+          'A self-contained Nuxt front-end with a serverMiddleware API with JSON-based DB',
       },
       {
         hid: 'twitter:image:src',
         property: 'twitter:image:src',
-        // content: `${this.gringottsUrl}/invitations/${this.invitation.data_id}.png`
+        content: process.env.OG_IMG,
       },
       {
         hid: 'twitter:card',
@@ -58,12 +68,12 @@ export default {
       {
         hid: 'twitter:creator',
         property: 'twitter:creator',
-        content: `@quieroinvitar`,
+        content: process.env.TW_CREATOR,
       },
       {
         hid: 'twitter:site',
         property: 'twitter:site',
-        content: `@quieroinvitar`,
+        content: process.env.TW_SITE,
       },
     ],
     link: [
@@ -104,7 +114,12 @@ export default {
 
   serverMiddleware: ['~/api/index.js'],
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/color-mode',
+  ],
 
   modules: [
     '@nuxtjs/axios',
@@ -138,6 +153,12 @@ export default {
     ],
   ],
 
+  googleFonts: {
+    families: {
+      Nunito: [200, 400, 700, 900],
+    },
+  },
+
   axios: {},
 
   pwa: {
@@ -148,6 +169,9 @@ export default {
 
   tailwindcss: {
     jit: true,
+  },
+  colorMode: {
+    classSuffix: '',
   },
 
   build: { cache: true, parallel: true },

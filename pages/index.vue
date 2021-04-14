@@ -1,28 +1,25 @@
 <template>
-  <div class="container">
+  <div class="app">
     <div>
-      <Logo />
-      <h1 class="title">full-nuxt-app</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+      <Logo class="logo" />
+      <h1 class="title">
+        <span class="Dark">Nuxt</span>
+        <span class="light">small</span>
+        <span class="regular">Stack</span>
+      </h1>
+      <h2 class="mode_color">Color mode: {{ $colorMode.value }}</h2>
+      <select v-model="$colorMode.preference" class="mode_selector">
+        <option value="system">System</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="sepia">Sepia</option>
+      </select>
+      <section class="tour_grid">
+        <article
+          v-for="tour in tours"
+          :key="`tour-${tour.id}`"
+          class="tour_card"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      <section>
-        <article v-for="tour in tours" :key="`tour-${tour.id}`">
           <img src="" alt="" />
           <h2>{{ tour.name }}</h2>
           <p>
@@ -54,35 +51,65 @@ export default {
 }
 </script>
 
+<style>
+body {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
+}
+.dark body {
+  background-color: #091a28;
+  color: #ebf4f1;
+}
+.sepia body {
+  background-color: #f1e7d0;
+  color: #433422;
+}
+</style>
+
 <style lang="scss">
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.app {
+  font-family: 'Nunito', Arial, sans-serif;
+  @apply mx-auto min-h-screen flex justify-center items-center text-center;
   .title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-      sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
+    @apply font-bold block tracking-wide text-4xl;
+    .dark {
+      color: #2e495e;
+    }
+    .light {
+      color: #00c48d;
+    }
+    .regular {
+      color: #108775;
+    }
   }
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.logo {
+  @apply max-w-xs w-10/12 mx-auto;
 }
-
-.links {
-  padding-top: 15px;
+.tour {
+  &_grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-rows: 5rem;
+    @apply grid gap-4 w-10/12 mx-auto my-6;
+  }
+  &_card {
+    @apply rounded-md shadow p-2 bg-gray-50 row-span-2 dark:bg-teal-900;
+    h2 {
+      @apply text-xl font-bold text-teal-600 tracking-normal;
+    }
+  }
 }
+.mode {
+  &_color {
+    @apply rounded px-4 py-2 border bg-white font-bold text-teal-700 w-10/12 mx-auto my-6;
+  }
+  &_selector {
+    @apply rounded-full px-8 py-4 border bg-white text-teal-700;
+  }
+}
+// .dark {
+//   & .tour_card {
+//     @apply bg-teal-900
+//   }
+// }
 </style>
