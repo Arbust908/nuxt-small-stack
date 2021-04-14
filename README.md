@@ -1,3 +1,5 @@
+<img src="/static/icon.png">
+
 # Nuxt Small Stack
 
 ## Build Setup
