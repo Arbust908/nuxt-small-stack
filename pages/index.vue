@@ -1,36 +1,30 @@
 <template>
   <div class="app">
-    <div>
-      <Logo class="logo" />
-      <h1 class="title">
-        <span class="Dark">Nuxt</span>
-        <span class="light">small</span>
-        <span class="regular">Stack</span>
-      </h1>
-      <h2 class="mode_color">Color mode: {{ $colorMode.value }}</h2>
-      <select v-model="$colorMode.preference" class="mode_selector">
-        <option value="system">System</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="sepia">Sepia</option>
-      </select>
-      <section class="tour_grid">
-        <article
-          v-for="tour in tours"
-          :key="`tour-${tour.id}`"
-          class="tour_card"
-        >
-          <img src="" alt="" />
-          <h2>{{ tour.name }}</h2>
-          <p>
-            {{ tour.summary }}
-          </p>
-          <footer>
-            {{ tour.difficulty }} - {{ tour.duration }} - ${{ tour.price }}
-          </footer>
-        </article>
-      </section>
-    </div>
+    <Logo class="logo" />
+    <h1 class="title">
+      <span class="Dark">Nuxt</span>
+      <span class="light">small</span>
+      <span class="regular">Stack</span>
+    </h1>
+    <h2 class="mode_color">Color mode: {{ $colorMode.value }}</h2>
+    <select v-model="$colorMode.preference" class="mode_selector">
+      <option value="system">System</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="sepia">Sepia</option>
+    </select>
+    <section class="tour_grid">
+      <article v-for="tour in tours" :key="`tour-${tour.id}`" class="tour_card">
+        <img src="" alt="" />
+        <h2>{{ tour.name }}</h2>
+        <p>
+          {{ tour.summary }}
+        </p>
+        <footer>
+          {{ tour.difficulty }} - {{ tour.duration }} - ${{ tour.price }}
+        </footer>
+      </article>
+    </section>
   </div>
 </template>
 
@@ -69,7 +63,7 @@ body {
 <style lang="scss">
 .app {
   font-family: 'Nunito', Arial, sans-serif;
-  @apply mx-auto min-h-screen flex justify-center items-center text-center;
+  @apply mx-auto min-h-screen flex flex-col justify-center items-center text-center;
   .title {
     @apply font-bold block tracking-wide text-4xl;
     .dark {
@@ -89,7 +83,7 @@ body {
 .tour {
   &_grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-auto-rows: 5rem;
+    grid-auto-rows: 6rem;
     @apply grid gap-4 w-10/12 mx-auto my-6;
   }
   &_card {
