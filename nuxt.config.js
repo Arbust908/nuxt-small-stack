@@ -119,6 +119,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxtjs/color-mode',
+    '@nuxt/typescript-build',
   ],
 
   modules: [
